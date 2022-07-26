@@ -1,16 +1,20 @@
+// basic reset
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: inherit; // inherit from body
 }
 
 html {
+  // making 1 rem as 10px; 10px/16px = 0.625
   font-size: 62.5%;
-}
-html:focus-within {
-  scroll-behavior: smooth;
+  
+  // setting core root default
+  &:focus-within {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -46,11 +50,12 @@ select {
 
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-    scroll-behavior: auto;
+   scroll-behavior: auto;
   }
+  
   *,
-*::before,
-*::after {
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
