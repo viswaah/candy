@@ -1,0 +1,14 @@
+{
+  "name": "candy",
+  "version": "1.0.0",
+  "description": "A minimalist sass boilerplate",
+  "main": "index.js",
+  "repository": "https://github.com/viswaah/candy.git",
+  "author": "viswaah",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.54.0"
+  }
+}
