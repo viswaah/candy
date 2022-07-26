@@ -1,4 +1,5 @@
-const { src, dest, watch, series } = require('gulp');
+const browserSync = require('browser-sync');
+const { src, dest, watch } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 
 const buildSass = () => {
@@ -8,7 +9,23 @@ const buildSass = () => {
 }
 
 const watchSass = () => {
-  watch(['sass/**/*.scss'], buildSass);
+  return buildSass()
+    .pipe(browserSync.stream());
 }
 
-exports.default = series(buildSass, watchSass);
+const serve = () => {
+  browserSync.init({
+    server: {
+        baseDir: './',
+    },
+    startPath: 'index.html',
+    ghostMode: false,
+    notify: false
+  });
+  buildSass(); 
+  watch(['sass/**/*.scss'], watchSass);
+  watch(['./*.html'], browserSync.reload);
+}
+
+exports.serve = serve;
+exports.build = buildSass;
