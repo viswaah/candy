@@ -1,0 +1,105 @@
+@use 'sass:math';
+@use '../abstracts';
+
+$justify-content-values: flex-start, flex-end, center, space-between, space-around, space-evenly;
+$align-items-values: flex-start, flex-end, stretch, baseline, center;
+
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+// grid gaps
+@each $key, $val in abstracts.$grid-gaps {
+  .gap-#{$key} > * {
+    padding: $val;
+  }
+  .gap-#{$key} {
+    margin: 0 -$val;
+    overflow: hidden;
+  }
+}
+
+// justify-content classes
+@each $val in $justify-content-values {
+  .justify-#{$val} {
+    justify-content: $val;
+  }
+}
+
+// align-items classes
+@each $val in $align-items-values {
+  .align-items-#{$val} {
+    align-items: $val;
+  }
+}
+
+// col classes
+@include abstracts.respond(xl) {
+  @for $i from 1 through abstracts.$grid-columns {
+    .col-xl-#{$i} {
+      flex-grow: 0;
+      width: math.div($i * 100%, abstracts.$grid-columns);
+    }
+    .col-offset-xl-#{$i} {
+      margin-left: math.div($i * 100%, abstracts.$grid-columns);
+    }
+  }
+}
+@include abstracts.respond(lg) {
+  @for $i from 1 through abstracts.$grid-columns {
+    .col-lg-#{$i} {
+      flex-grow: 0;
+      width: math.div($i * 100%, abstracts.$grid-columns);
+    }
+    .col-offset-lg-#{$i} {
+      margin-left: math.div($i * 100%, abstracts.$grid-columns);
+    }
+  }
+}
+@include abstracts.respond(md) {
+  @for $i from 1 through abstracts.$grid-columns {
+    .col-md-#{$i} {
+      flex-grow: 0;
+      width: math.div($i * 100%, abstracts.$grid-columns);
+    }
+    .col-offset-md-#{$i} {
+      margin-left: math.div($i * 100%, abstracts.$grid-columns);
+    }
+  }
+}
+@include abstracts.respond(sm) {
+  @for $i from 1 through abstracts.$grid-columns {
+    .col-sm-#{$i} {
+      flex-grow: 0;
+      width: math.div($i * 100%, abstracts.$grid-columns);
+    }
+    .col-offset-sm-#{$i} {
+      margin-left: math.div($i * 100%, abstracts.$grid-columns);
+    }
+  }
+}
+@include abstracts.respond(xs) {
+  @for $i from 1 through abstracts.$grid-columns {
+    .col-xs-#{$i} {
+      flex-grow: 0;
+      width: math.div($i * 100%, abstracts.$grid-columns);
+    }
+    .col-offset-xs-#{$i} {
+      margin-left: math.div($i * 100%, abstracts.$grid-columns);
+    }
+  }
+}
+
+
